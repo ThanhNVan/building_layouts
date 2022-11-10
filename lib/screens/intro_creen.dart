@@ -29,8 +29,8 @@ class IntroScreen extends StatelessWidget {
         body: Column(children: [
           Container(
             margin: EdgeInsets.all(20),
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
                 color: Colors.cyanAccent,
                 gradient: LinearGradient(
@@ -38,14 +38,14 @@ class IntroScreen extends StatelessWidget {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
-                  image: NetworkImage('http://bit.ly/flutter_tiger'),
+                  image: AssetImage('images/voz-cuoi.jpg'),
                   fit: BoxFit.cover,
                 )),
           ),
           Container(
             margin: EdgeInsets.all(20.0),
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
                 color: Colors.cyanAccent,
                 gradient: LinearGradient(
@@ -56,6 +56,23 @@ class IntroScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
                   image: AssetImage('images/ohno.jpg'),
+                  fit: BoxFit.cover,
+                )),
+          ),
+          Container(
+            margin: EdgeInsets.all(20.0),
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+                color: Colors.cyanAccent,
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.cyanAccent]),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                  image: NetworkImage('http://bit.ly/flutter_tiger'),
                   fit: BoxFit.cover,
                 )),
           ),

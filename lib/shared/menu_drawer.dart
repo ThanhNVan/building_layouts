@@ -1,3 +1,4 @@
+import 'package:building_layouts/screens/areaCalculator_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/intro_creen.dart';
@@ -46,7 +47,7 @@ class MenuDrawer extends StatelessWidget {
                   screen = IntroScreen();
                   break;
                 case 'Area Calculator':
-                  //screen = BmiScreen();
+                  screen = AreaScreen();
                   break;
                 case 'Weather':
                   //screen = WeatherScreen();
