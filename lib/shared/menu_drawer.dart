@@ -2,6 +2,7 @@ import 'package:building_layouts/screens/areaCalculator_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/intro_creen.dart';
+import '../screens/row_column_screen.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -19,6 +20,7 @@ class MenuDrawer extends StatelessWidget {
     final List<String> menuTitles = [
       'Home',
       'Area Calculator',
+      'Row And Column'
     ];
 
     List<Widget> menuItems = [];
@@ -49,15 +51,15 @@ class MenuDrawer extends StatelessWidget {
                 case 'Area Calculator':
                   screen = AreaScreen();
                   break;
-                case 'Weather':
-                  //screen = WeatherScreen();
+                case 'Row And Column':
+                  screen = RowColumnScreen();
                   break;
                 case 'Training':
                   //screen = SessionScreen();
                   break;
                 default:
               }
-              //Navigator.of(context).pop();
+              Navigator.of(context).pop();
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => screen));
             }),

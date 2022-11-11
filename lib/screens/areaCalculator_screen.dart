@@ -60,47 +60,51 @@ class _AreaCalculatorState extends State<AreaCalculator> {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(top: 15.0),
-        child: Column(
-          children: <Widget>[
-            //dropdown
-            DropdownButton<String>(
-                value: currentShape,
-                items: shapes.map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 24.0),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (shape) {
-                  setState(() {
-                    currentShape = shape ?? 'Rectangle';
-                  });
-                }),
-            //width
-            AreaTextField(widthController, 'Width'),
-            //height
-            AreaTextField(heightController, 'Height'),
-            Container(
-              margin: EdgeInsets.all(15.0),
-              child: ElevatedButton(
-                child: Text(
-                  'Calculate Area',
-                  style: TextStyle(fontSize: 18.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              //dropdown
+              DropdownButton<String>(
+                  value: currentShape,
+                  items: shapes.map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 24.0),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (shape) {
+                    setState(() {
+                      currentShape = shape ?? 'Rectangle';
+                    });
+                  }),
+
+              ShapeContainer(currentShape),
+              //width
+              AreaTextField(widthController, 'Width'),
+              //height
+              AreaTextField(heightController, 'Height'),
+              Container(
+                margin: EdgeInsets.all(15.0),
+                child: ElevatedButton(
+                  child: Text(
+                    'Calculate Area',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  onPressed: calculateArea,
                 ),
-                onPressed: calculateArea,
               ),
-            ),
-            Text(
-              result,
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Colors.green[700],
+              Text(
+                result,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.green[700],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 
@@ -164,5 +168,62 @@ class AreaTextField extends StatelessWidget {
             hintText: hint,
           ),
         ));
+  }
+}
+
+class ShapeContainer extends StatelessWidget {
+  final String shape;
+  //const ShapeContainer({super.key});
+  const ShapeContainer(this.shape);
+
+  @override
+  Widget build(BuildContext context) {
+    if (shape == 'Triangle') {
+      return CustomPaint(
+        size: Size(100, 100),
+        painter: TrianglePainter(),
+      );
+    } else {
+      return CustomPaint(
+        size: Size(100, 100),
+        painter: ReactanglePainter(),
+      );
+    }
+  }
+}
+
+class TrianglePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    paint.color = Colors.teal;
+    var path = Path();
+    path.moveTo(size.width / 2, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+class ReactanglePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    paint.color = Colors.teal;
+    Rect rect =
+        Rect.fromLTRB(0, size.height / 4, size.width, size.height / 4 * 3);
+
+    canvas.drawRect(rect, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
